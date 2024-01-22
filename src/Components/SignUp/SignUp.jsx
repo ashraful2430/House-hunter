@@ -3,26 +3,36 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import swal from "sweetalert";
-import SocialLogin from "../SocialLogin/SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(true);
   const { handleUpdateProfile, registerUser } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     registerUser(data.email, data.password)
       .then((result) => {
         console.log(result);
-        handleUpdateProfile(data.name).then((res) => {
-          console.log(res);
-          swal("Good job!", "User logged in successfully!", "success");
-          navigate("/");
+        handleUpdateProfile(data.name).then(() => {
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            role: data.role,
+            number: data.number,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              swal("Good job!", "User logged in successfully!", "success");
+              navigate("/");
+            }
+          });
         });
       })
       .catch((err) => {
@@ -215,8 +225,6 @@ const SignUp = () => {
                   </Link>
                   .
                 </p>
-                <div className="divider divider-neutral">Or</div>
-                <SocialLogin />
               </div>
             </div>
           </div>

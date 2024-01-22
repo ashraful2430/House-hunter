@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import swal from "sweetalert";
-import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(true);
@@ -133,8 +132,6 @@ const Login = () => {
                   </Link>
                   .
                 </p>
-                <div className="divider divider-neutral">Or</div>
-                <SocialLogin />
               </div>
             </div>
           </div>
