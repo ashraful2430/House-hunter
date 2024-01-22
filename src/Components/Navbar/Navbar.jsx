@@ -3,16 +3,30 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const links = (
     <>
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? " bg-none text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100"
-        }
-        to={"/"}
-      >
-        Home
-      </NavLink>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " bg-none text-blue-500 font-bold"
+              : "hover:text-blue-400 transition duration-300 delay-100"
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " bg-none text-blue-500 font-bold"
+              : "hover:text-blue-400 transition duration-300 delay-100"
+          }
+          to={"/reviews"}
+        >
+          Reviews
+        </NavLink>
+      </li>
     </>
   );
   return (
