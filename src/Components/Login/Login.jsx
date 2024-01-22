@@ -1,15 +1,30 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import swal from "sweetalert";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(true);
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    login(data.email, data.password)
+      .then((res) => {
+        console.log(res);
+        swal("Good job!", "User logged in successfully!", "success");
+        navigate("/");
+      })
+      .catch((err) => {
+        swal("Sorry!", `${err.message.slice(10, 50)}`, "error");
+      });
+  };
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
@@ -118,6 +133,8 @@ const Login = () => {
                   </Link>
                   .
                 </p>
+                <div className="divider divider-neutral">Or</div>
+                <SocialLogin />
               </div>
             </div>
           </div>

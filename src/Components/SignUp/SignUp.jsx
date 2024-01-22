@@ -1,16 +1,34 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import swal from "sweetalert";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(true);
+  const { handleUpdateProfile, registerUser } = useAuth();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    registerUser(data.email, data.password)
+      .then((result) => {
+        console.log(result);
+        handleUpdateProfile(data.name).then((res) => {
+          console.log(res);
+          swal("Good job!", "User logged in successfully!", "success");
+          navigate("/");
+        });
+      })
+      .catch((err) => {
+        swal("Sorry!", `${err.message.slice(10, 50)}`, "error");
+      });
+  };
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
@@ -46,6 +64,21 @@ const SignUp = () => {
 
               <div className="mt-8">
                 <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="mt-4">
+                    <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
+                      Name
+                    </label>
+                    <input
+                      className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                      type="name"
+                      {...register("name", { required: true })}
+                    />
+                    {errors.name && (
+                      <span className="text-red-500">
+                        Your name is required
+                      </span>
+                    )}
+                  </div>
                   <div>
                     <label
                       htmlFor="email"
@@ -146,14 +179,18 @@ const SignUp = () => {
                         </label>
 
                         <input
-                          type="number"
-                          {...register("number", { required: true })}
+                          type="text"
+                          {...register("number", {
+                            required: true,
+                            pattern: /^(01)\d{9}$/,
+                          })}
                           placeholder="Phone Number"
-                          className="block  mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
+                          className="block mt-2 w-full placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
                         />
                         {errors.number && (
                           <span className="text-red-500">
-                            Your number is required
+                            Your number is required and must be a valid
+                            Bangladeshi number
                           </span>
                         )}
                       </div>
@@ -177,6 +214,8 @@ const SignUp = () => {
                   </Link>
                   .
                 </p>
+                <div className="divider divider-neutral">Or</div>
+                <SocialLogin />
               </div>
             </div>
           </div>

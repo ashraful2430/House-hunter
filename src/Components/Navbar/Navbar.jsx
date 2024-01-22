@@ -1,6 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const defaultPhoto =
+    "https://i.ibb.co/Fhm4brM/Screenshot-2023-11-25-145934.jpg";
+  const handleLogOut = () => {
+    logout()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const links = (
     <>
       <li>
@@ -68,9 +82,45 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            <Link to={"/login"}>
-              <a className="btn">Login</a>
-            </Link>
+            {user?.email ? (
+              <div className="dropdown dropdown-end z-50 text-center">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL ? user?.photoURL : defaultPhoto} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
+                      {user?.displayName}
+                    </button>
+                  </li>
+
+                  <li>
+                    <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
+                      Dashboard
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-sm text-red-500  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <Link to="/login">
+                <button className="inline-block rounded border border-current px-8 py-3 text-sm font-medium text-indigo-600 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:text-indigo-500">
+                  Log In
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
