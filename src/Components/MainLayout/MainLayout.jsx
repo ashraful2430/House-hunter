@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 
 const MainLayout = () => {
   return (
-    <>
+    <div className="font-lora">
       <div>
         <Navbar />
       </div>
@@ -14,7 +14,7 @@ const MainLayout = () => {
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

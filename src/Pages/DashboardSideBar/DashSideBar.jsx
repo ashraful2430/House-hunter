@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import useUser from "../../Hooks/useUser";
 const DashSideBar = () => {
   const [users] = useUser();
-  console.log(users);
+
   const links = (
     <>
       {users.role === "House Owner" ? (
