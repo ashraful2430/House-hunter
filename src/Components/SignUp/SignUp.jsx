@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
 import swal from "sweetalert";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(true);
-  const { handleUpdateProfile, registerUser } = useAuth();
   const axiosPublic = useAxiosPublic();
   const {
     register,
@@ -17,32 +15,36 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    registerUser(data.email, data.password)
-      .then(() => {
-        handleUpdateProfile(data.name).then(() => {
-          const userInfo = {
-            name: data.name,
-            email: data.email,
-            role: data.role,
-            number: data.number,
-          };
-          axiosPublic.post("/users", userInfo).then((res) => {
-            if (res.data.insertedId) {
-              swal("Good job!", "User logged in successfully!", "success");
-              if (data.role == "House Owner") {
-                navigate("/dashboard/owner-profile");
-                console.log(data.role);
-              } else {
-                navigate("/dashboard/renter-profile");
-              }
-            }
-          });
-        });
-      })
-      .catch((err) => {
-        swal("Sorry!", `${err.message.slice(10, 50)}`, "error");
-      });
+    try {
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        number: data.number,
+      };
+
+      const localInfo = { name: data.name, email: data.email };
+      localStorage.setItem("user", JSON.stringify(localInfo));
+
+      const response = await axiosPublic.post("/users", userInfo);
+
+      if (response.data.insertedId) {
+        swal("Good job!", "User logged in successfully!", "success");
+        if (data.role === "House Owner") {
+          navigate("/dashboard/owner-profile");
+          console.log(data.role);
+        } else {
+          navigate("/dashboard/renter-profile");
+        }
+      }
+    } catch (error) {
+      console.error("Error during user registration:", error);
+
+      // Show error message
+      swal("Sorry!", "Error during user registration", "error");
+    }
   };
+
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
