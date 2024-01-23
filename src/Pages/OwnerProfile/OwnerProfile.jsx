@@ -25,7 +25,7 @@ const OwnerProfile = () => {
           <h3 className="text-center text-xl md:text-3xl font-semibold my-5">
             Houses you gave on rent
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4 mx-2">
             {rentedHouses.slice(0, 3).map((house) => (
               <ShowHouses key={house._id} house={house}></ShowHouses>
             ))}

@@ -17,13 +17,13 @@ const ShowHouses = ({ house }) => {
   } = house;
   return (
     <>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact  bg-base-100 shadow-xl">
         <figure>
-          <img src={image} alt="House" />
+          <img className="h-64 object-cover" src={image} alt="House" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{houseName}</h2>
-          <div className="flex flex-col md:flex-row  items-center">
+          <div className="flex flex-row  items-center">
             <p className="flex-1">
               {" "}
               <strong>City</strong> - {city}{" "}
@@ -32,7 +32,7 @@ const ShowHouses = ({ house }) => {
               <strong>Address</strong>- {address}{" "}
             </p>
           </div>
-          <div className="flex flex-col md:flex-row items-center ">
+          <div className="flex flex-row items-center ">
             <p className="flex-1">
               <strong>Bedroom</strong>- {bedroom}
             </p>
@@ -40,7 +40,7 @@ const ShowHouses = ({ house }) => {
               <strong>Bathrooms</strong>- {bathrooms}
             </p>
           </div>
-          <div className="flex flex-col md:flex-row items-center ">
+          <div className="flex flex-row items-center ">
             <p className="flex-1">
               <strong>Size</strong>- {size} Sq.Feat
             </p>
