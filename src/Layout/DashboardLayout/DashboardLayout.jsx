@@ -11,7 +11,7 @@ const DashboardLayout = () => {
       <div className="flex-1">
         <Outlet></Outlet>
       </div>
-      <div className="absolute bottom-10 right-10">
+      <div className="absolute bottom-10 right-3">
         <AddHouseButton />
       </div>
     </div>

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import swal from "sweetalert";
 import useUser from "../../Hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { IoIosAddCircle } from "react-icons/io";
 
 const AddHouseButton = () => {
   const navigate = useNavigate();
@@ -49,7 +50,10 @@ const AddHouseButton = () => {
         className=" inline-block rounded border border-current px-8 py-3 text-sm font-medium text-indigo-600 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:text-indigo-500"
         onClick={() => document.getElementById("my_modal_3").showModal()}
       >
-        Add New House
+        <span className="hidden lg:block">Add New House</span>
+        <span className="block lg:hidden">
+          <IoIosAddCircle className="text-3xl"></IoIosAddCircle>
+        </span>
       </button>
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
@@ -211,7 +215,10 @@ const AddHouseButton = () => {
                   type="number"
                   placeholder="Number"
                   className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
-                  {...register("number", { required: true })}
+                  {...register("number", {
+                    required: true,
+                    pattern: /^(01)\d{9}$/,
+                  })}
                 />
                 {errors.number && (
                   <span className="text-red-500">Your number is required</span>

@@ -104,9 +104,9 @@ const DashSideBar = () => {
     <>
       <div className="hidden lg:block">
         <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 ">
-          <a className="mx-auto">
+          <div className="mx-auto">
             <p className="text-2xl font-semibold">House Hunter</p>
-          </a>
+          </div>
 
           <div className="flex flex-col items-center mt-6 -mx-2">
             <img
