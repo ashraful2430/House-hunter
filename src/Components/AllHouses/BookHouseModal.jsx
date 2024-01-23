@@ -2,9 +2,29 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import useUser from "../../Hooks/useUser";
 import { useEffect } from "react";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 const BookHouseModal = ({ house, index }) => {
+  const navigate = useNavigate();
+
+  const {
+    houseName,
+    address,
+    bathrooms,
+    bedroom,
+    city,
+    date,
+    image,
+    number,
+    rent,
+    size,
+    ownerName,
+    details,
+  } = house;
   const [users, isLoading] = useUser();
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -30,11 +50,31 @@ const BookHouseModal = ({ house, index }) => {
 
   const onSubmit = (data) => {
     const bookingInfo = {
-      houseName: house.houseName,
-      city: house.city,
-      ...data,
+      houseName,
+      address,
+      bathrooms,
+      bedroom,
+      city,
+      date,
+      image,
+      number,
+      rent,
+      size,
+      ownerName,
+      details,
+      bookedUser: data.name,
+      bookedEmail: data.email,
+      bookedNumber: data.number,
     };
     console.log(bookingInfo);
+    axiosPublic.post("/booked", bookingInfo).then((res) => {
+      if (res.data.insertedId) {
+        swal("Thank You!", "You have booked successfully!", "success");
+        document.getElementById(`${index}`).close();
+
+        navigate("/dashboard/rented-house");
+      }
+    });
   };
   return (
     <>
