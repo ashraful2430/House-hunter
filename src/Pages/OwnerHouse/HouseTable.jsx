@@ -36,7 +36,11 @@ const HouseTable = ({ house, index, refetch }) => {
         <td>{houseName}</td>
         <td>{city}</td>
         <td>
-          <TableUpdate index={index} house={house}></TableUpdate>
+          <TableUpdate
+            index={index}
+            house={house}
+            refetch={refetch}
+          ></TableUpdate>
         </td>
         <td onClick={() => handleDelete(_id)}>
           <RiDeleteBin6Fill className=" text-center text-2xl text-red-500 ml-2 hover:cursor-pointer" />

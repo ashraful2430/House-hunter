@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import swal from "sweetalert";
 
-const TableUpdate = ({ house, index }) => {
+const TableUpdate = ({ house, index, refetch }) => {
+  const axiosPublic = useAxiosPublic();
   const {
     houseName,
     address,
@@ -15,16 +18,16 @@ const TableUpdate = ({ house, index }) => {
     rent,
     size,
     details,
+    _id,
   } = house;
   const {
     register,
     handleSubmit,
-    reset,
+
     setValue,
     formState: { errors },
   } = useForm();
   useEffect(() => {
-    // Set initial values using setValue
     setValue("houseName", houseName);
     setValue("address", address);
     setValue("city", city);
@@ -50,9 +53,26 @@ const TableUpdate = ({ house, index }) => {
     details,
     setValue,
   ]);
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    const updatedInfo = {
+      houseName: data.houseName,
+      address: data.address,
+      bathrooms: data.bathrooms,
+      bedroom: data.bedroom,
+      city: data.city,
+      date: data.date,
+      image: data.image,
+      number: data.number,
+      rent: data.rent,
+      size: data.size,
+      details: data.details,
+    };
+    const response = await axiosPublic.patch(`/rented/${_id}`, updatedInfo);
+    if (response.data.modifiedCount > 0) {
+      swal("Good job!", "You House Info updated successfully!", "success");
+      document.getElementById(`${index}`).close();
+      refetch();
+    }
   };
   return (
     <>
@@ -282,6 +302,7 @@ const TableUpdate = ({ house, index }) => {
 TableUpdate.propTypes = {
   house: PropTypes.object,
   index: PropTypes.number,
+  refetch: PropTypes.func,
 };
 
 export default TableUpdate;
