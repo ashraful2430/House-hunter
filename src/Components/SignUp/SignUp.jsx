@@ -172,9 +172,9 @@ const SignUp = () => {
                         className="select select-bordered w-full"
                       >
                         <option value="" disabled>
-                          Select Tags
+                          Select Role
                         </option>
-                        <option value="House Hunter">House Hunter</option>
+                        <option value="House Owner">House Owner</option>
                         <option value="House Renter">House Renter</option>
                       </select>
                       {errors.role && (
