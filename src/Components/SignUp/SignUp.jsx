@@ -30,7 +30,12 @@ const SignUp = () => {
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
               swal("Good job!", "User logged in successfully!", "success");
-              navigate("/");
+              if (data.role == "House Owner") {
+                navigate("/dashboard/owner-profile");
+                console.log(data.role);
+              } else {
+                navigate("/dashboard/renter-profile");
+              }
             }
           });
         });
