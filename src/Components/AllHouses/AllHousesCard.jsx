@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import BookHouseModal from "./BookHouseModal";
 
-const AllHousesCard = ({ house }) => {
+const AllHousesCard = ({ house, index }) => {
   const {
     houseName,
     address,
@@ -62,11 +63,15 @@ const AllHousesCard = ({ house }) => {
           </div>
           <p>{details}</p>
         </div>
+        <div className="text-center">
+          <BookHouseModal house={house} index={index} />
+        </div>
       </div>
     </>
   );
 };
 AllHousesCard.propTypes = {
   house: PropTypes.object,
+  index: PropTypes.number,
 };
 export default AllHousesCard;

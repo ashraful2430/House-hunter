@@ -24,8 +24,12 @@ const AllHouses = () => {
             All Houses For Rents
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4 mx-2">
-            {allHouses.map((house) => (
-              <AllHousesCard key={house._id} house={house}></AllHousesCard>
+            {allHouses.map((house, index) => (
+              <AllHousesCard
+                key={house._id}
+                house={house}
+                index={index}
+              ></AllHousesCard>
             ))}
           </div>
         </>
