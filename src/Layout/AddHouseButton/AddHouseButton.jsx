@@ -1,13 +1,49 @@
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import swal from "sweetalert";
+import useUser from "../../Hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 const AddHouseButton = () => {
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+  const [users] = useUser();
+  console.log(users.name);
+  const ownerName = users.name;
+  const ownerEmail = users.email;
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const info = {
+      address: data.address,
+      bathrooms: data.bathrooms,
+      bedroom: data.bedroom,
+      city: data.city,
+      details: data.details,
+      date: data.date,
+      houseName: data.houseName,
+      image: data.image,
+      number: data.number,
+      rent: data.rent,
+      size: data.size,
+      ownerEmail,
+      ownerName,
+    };
+
+    axiosPublic.post("/rented", info).then((res) => {
+      if (res.data.insertedId) {
+        swal("Thank You!", "House Info added successfully!", "success");
+        document.getElementById("my_modal_3").close();
+        reset();
+        navigate("/dashboard/owner-house");
+      }
+    });
+  };
   return (
     <>
       <button
@@ -29,7 +65,7 @@ const AddHouseButton = () => {
           </form>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col md:flex-row md:items-center gap-2 justify-center mb-2">
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="text"
                   placeholder="House Name"
@@ -44,7 +80,7 @@ const AddHouseButton = () => {
                   House Name
                 </span>
               </label>
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="text"
                   placeholder="House Address"
@@ -61,7 +97,7 @@ const AddHouseButton = () => {
               </label>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-2 justify-center mb-2">
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="text"
                   placeholder="City Name"
@@ -75,7 +111,7 @@ const AddHouseButton = () => {
                   City Name
                 </span>
               </label>
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="number"
                   placeholder="Bedroom"
@@ -93,7 +129,7 @@ const AddHouseButton = () => {
               </label>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-2 justify-center mb-2">
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="number"
                   placeholder="Bathrooms"
@@ -109,7 +145,7 @@ const AddHouseButton = () => {
                   Bathrooms
                 </span>
               </label>
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="text"
                   placeholder="Room size"
@@ -125,7 +161,7 @@ const AddHouseButton = () => {
               </label>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-2 justify-center mb-2">
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="date"
                   placeholder="date"
@@ -139,7 +175,7 @@ const AddHouseButton = () => {
                   Availability Date
                 </span>
               </label>
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="number"
                   placeholder="Rent"
@@ -155,7 +191,7 @@ const AddHouseButton = () => {
               </label>
             </div>
             <div>
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1  flex-1">
                 <input
                   type="text"
                   placeholder="Picture Link"
@@ -171,7 +207,7 @@ const AddHouseButton = () => {
               </label>
             </div>
             <div className="my-2">
-              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 flex-1">
+              <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 focus-within:ring-blue-600 flex-1">
                 <input
                   type="number"
                   placeholder="Number"

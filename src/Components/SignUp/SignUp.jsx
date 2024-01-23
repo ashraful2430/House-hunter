@@ -18,8 +18,7 @@ const SignUp = () => {
   } = useForm();
   const onSubmit = async (data) => {
     registerUser(data.email, data.password)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
         handleUpdateProfile(data.name).then(() => {
           const userInfo = {
             name: data.name,
