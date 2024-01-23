@@ -19,10 +19,10 @@ const DashSideBar = () => {
             }
             to={"/"}
           >
-            <a className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
+            <p className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
               <FaHouseChimneyWindow className="text-2xl" />
               <span className="mx-4 font-medium">Home</span>
-            </a>
+            </p>
           </NavLink>
           <NavLink
             to={"owner-profile"}
@@ -32,11 +32,11 @@ const DashSideBar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
             }
           >
-            <a className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
+            <p className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
               <MdDashboard className="text-2xl" />
 
               <span className="mx-4 font-medium">Dashboard</span>
-            </a>
+            </p>
           </NavLink>
           <NavLink
             to={"owner-house"}
@@ -46,11 +46,11 @@ const DashSideBar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
             }
           >
-            <a className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
+            <p className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
               <FaBuilding className="text-2xl" />
 
               <span className="mx-4 font-medium">Owned Houses</span>
-            </a>
+            </p>
           </NavLink>
         </>
       ) : (
@@ -63,10 +63,10 @@ const DashSideBar = () => {
             }
             to={"/"}
           >
-            <a className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
+            <p className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
               <FaHouseChimneyWindow className="text-2xl" />
               <span className="mx-4 font-medium">Home</span>
-            </a>
+            </p>
           </NavLink>
           <NavLink
             to={"renter-profile"}
@@ -76,11 +76,11 @@ const DashSideBar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
             }
           >
-            <a className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
+            <p className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
               <MdDashboard className="text-2xl" />
 
               <span className="mx-4 font-medium">Dashboard</span>
-            </a>
+            </p>
           </NavLink>
           <NavLink
             to={"rented-house"}
@@ -90,11 +90,11 @@ const DashSideBar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
             }
           >
-            <a className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
+            <p className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
               <FaBuilding className="text-2xl" />
 
               <span className="mx-4 font-medium">Rented Houses</span>
-            </a>
+            </p>
           </NavLink>
         </>
       )}

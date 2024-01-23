@@ -19,9 +19,9 @@ const MobileSidebar = () => {
             }
             to={"/"}
           >
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+            <p className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
               <FaHouseChimneyWindow className="text-2xl" />
-            </a>
+            </p>
           </NavLink>
           {/* dashboard */}
           <NavLink
@@ -32,9 +32,9 @@ const MobileSidebar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
             }
           >
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+            <p className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
               <MdDashboard className="text-2xl" />
-            </a>
+            </p>
           </NavLink>
 
           {/* houses */}
@@ -46,9 +46,9 @@ const MobileSidebar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
             }
           >
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+            <p className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
               <FaBuilding className="text-2xl" />
-            </a>
+            </p>
           </NavLink>
         </>
       ) : (
@@ -62,9 +62,9 @@ const MobileSidebar = () => {
             }
             to={"/"}
           >
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+            <p className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
               <FaHouseChimneyWindow className="text-2xl" />
-            </a>
+            </p>
           </NavLink>
           {/* dashboard */}
           <NavLink
@@ -75,9 +75,9 @@ const MobileSidebar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
             }
           >
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+            <p className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
               <MdDashboard className="text-2xl" />
-            </a>
+            </p>
           </NavLink>
 
           {/* houses */}
@@ -89,9 +89,9 @@ const MobileSidebar = () => {
                 : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
             }
           >
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+            <p className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
               <FaBuilding className="text-2xl" />
-            </a>
+            </p>
           </NavLink>
         </>
       )}
@@ -102,13 +102,13 @@ const MobileSidebar = () => {
       <div className="block lg:hidden">
         <aside className="flex flex-col items-center w-16 h-screen py-8 overflow-y-auto bg-white border-r rtl:border-l rtl:border-r-0 dark:bg-gray-900 dark:border-gray-700">
           <nav className="flex flex-col flex-1 space-y-6">
-            <a>
+            <div>
               <img
                 className="object-cover w-8 h-8 rounded-full"
                 src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
                 alt=""
               />
-            </a>
+            </div>
             {links}
           </nav>
         </aside>
