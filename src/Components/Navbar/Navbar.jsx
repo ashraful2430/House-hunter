@@ -1,21 +1,26 @@
 import { Link, NavLink } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
 import useUser from "../../Hooks/useUser";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const [userEmail, setUserEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const defaultPhoto =
     "https://i.ibb.co/Fhm4brM/Screenshot-2023-11-25-145934.jpg";
   const [users] = useUser();
 
+  useEffect(() => {
+    const localUserInfo = JSON.parse(localStorage.getItem("user"));
+    if (localUserInfo) {
+      setUserEmail(localUserInfo.email);
+      setUserName(localUserInfo.name);
+    }
+  }, []);
+
   const handleLogOut = () => {
-    logout()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    setUserEmail("");
+    setUserName("");
+    localStorage.removeItem("user");
   };
 
   const links = (
@@ -85,11 +90,11 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            {user?.email ? (
+            {userEmail ? (
               <div className="dropdown dropdown-end z-50 text-center">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    <img src={user.photoURL ? user?.photoURL : defaultPhoto} />
+                    <img src={defaultPhoto} />
                   </div>
                 </label>
                 <ul
@@ -98,7 +103,7 @@ const Navbar = () => {
                 >
                   <li>
                     <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
-                      {user?.displayName}
+                      {userName}
                     </button>
                   </li>
 

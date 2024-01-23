@@ -32,7 +32,6 @@ const SignUp = () => {
         swal("Good job!", "User logged in successfully!", "success");
         if (data.role === "House Owner") {
           navigate("/dashboard/owner-profile");
-          console.log(data.role);
         } else {
           navigate("/dashboard/renter-profile");
         }
