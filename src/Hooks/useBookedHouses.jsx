@@ -13,14 +13,18 @@ const useBookedHouses = () => {
     }
   }, []);
 
-  const { data: booked = [], isLoading } = useQuery({
+  const {
+    data: booked = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["booked", userEmail],
     queryFn: async () => {
       const res = await axiosPublic.get(`/booked/${userEmail}`);
       return res.data;
     },
   });
-  return [booked, isLoading];
+  return [booked, isLoading, refetch];
 };
 
 export default useBookedHouses;
