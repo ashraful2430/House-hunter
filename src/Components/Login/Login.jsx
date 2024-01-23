@@ -1,28 +1,32 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
+
+import useAllUsers from "../../Hooks/useAllUsers";
 import swal from "sweetalert";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(true);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const [allUsers] = useAllUsers();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    login(data.email, data.password)
-      .then((res) => {
-        console.log(res);
-        swal("Good job!", "User logged in successfully!", "success");
-        navigate("/");
-      })
-      .catch((err) => {
-        swal("Sorry!", `${err.message.slice(10, 50)}`, "error");
-      });
+    const userExists = allUsers.some((user) => user.email === data.email);
+
+    if (!userExists) {
+      swal("Sorry!", "You have to registered first", "error");
+      return;
+    }
+    const loggedInUser = allUsers.find((user) => user.email === data.email);
+    const localInfo = { name: loggedInUser.name, email: loggedInUser.email };
+    localStorage.setItem("user", JSON.stringify(localInfo));
+    swal("Good job!", "User logged in successfully!", "success");
+    navigate("/");
   };
   return (
     <>

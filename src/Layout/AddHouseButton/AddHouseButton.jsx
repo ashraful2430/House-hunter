@@ -8,7 +8,6 @@ const AddHouseButton = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const [users] = useUser();
-  console.log(users.name);
   const ownerName = users.name;
   const ownerEmail = users.email;
   const {

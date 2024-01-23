@@ -35,12 +35,14 @@ const SignUp = () => {
         } else {
           navigate("/dashboard/renter-profile");
         }
+      } else {
+        swal("Sorry!", "You have already registered", "error");
       }
     } catch (error) {
       console.error("Error during user registration:", error);
 
       // Show error message
-      swal("Sorry!", "Error during user registration", "error");
+      swal("Sorry!", "You have already registered", "error");
     }
   };
 
