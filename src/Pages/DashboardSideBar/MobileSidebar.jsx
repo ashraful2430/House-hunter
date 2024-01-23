@@ -2,50 +2,99 @@ import { MdDashboard } from "react-icons/md";
 import { FaHouseChimneyWindow } from "react-icons/fa6";
 import { FaBuilding } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useUser from "../../Hooks/useUser";
 
 const MobileSidebar = () => {
+  const [users] = useUser();
   const links = (
     <>
-      {/* home */}
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "  text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100"
-        }
-        to={"/"}
-      >
-        <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
-          <FaHouseChimneyWindow className="text-2xl" />
-        </a>
-      </NavLink>
-      {/* dashboard */}
-      <NavLink
-        to={"owner-profile"}
-        className={({ isActive }) =>
-          isActive
-            ? "  text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
-        }
-      >
-        <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
-          <MdDashboard className="text-2xl" />
-        </a>
-      </NavLink>
+      {users.role === "House Owner" ? (
+        <>
+          {/* home */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "  text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100"
+            }
+            to={"/"}
+          >
+            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+              <FaHouseChimneyWindow className="text-2xl" />
+            </a>
+          </NavLink>
+          {/* dashboard */}
+          <NavLink
+            to={"owner-profile"}
+            className={({ isActive }) =>
+              isActive
+                ? "  text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
+            }
+          >
+            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+              <MdDashboard className="text-2xl" />
+            </a>
+          </NavLink>
 
-      {/* houses */}
-      <NavLink
-        to={"owner-house"}
-        className={({ isActive }) =>
-          isActive
-            ? "  text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
-        }
-      >
-        <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
-          <FaBuilding className="text-2xl" />
-        </a>
-      </NavLink>
+          {/* houses */}
+          <NavLink
+            to={"owner-house"}
+            className={({ isActive }) =>
+              isActive
+                ? "  text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
+            }
+          >
+            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+              <FaBuilding className="text-2xl" />
+            </a>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          {/* home */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "  text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100"
+            }
+            to={"/"}
+          >
+            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+              <FaHouseChimneyWindow className="text-2xl" />
+            </a>
+          </NavLink>
+          {/* dashboard */}
+          <NavLink
+            to={"renter-profile"}
+            className={({ isActive }) =>
+              isActive
+                ? "  text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
+            }
+          >
+            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+              <MdDashboard className="text-2xl" />
+            </a>
+          </NavLink>
+
+          {/* houses */}
+          <NavLink
+            to={"rented-house"}
+            className={({ isActive }) =>
+              isActive
+                ? "  text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
+            }
+          >
+            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+              <FaBuilding className="text-2xl" />
+            </a>
+          </NavLink>
+        </>
+      )}
     </>
   );
   return (
@@ -56,7 +105,7 @@ const MobileSidebar = () => {
             <a>
               <img
                 className="object-cover w-8 h-8 rounded-full"
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
+                src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
                 alt=""
               />
             </a>

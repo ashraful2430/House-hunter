@@ -8,6 +8,8 @@ import SignUp from "../Components/SignUp/SignUp";
 import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
 import OwnerHouse from "../Pages/OwnerHouse/OwnerHouse";
 import OwnerProfile from "../Pages/OwnerProfile/OwnerProfile";
+import RenterProfile from "../Pages/RenterProfile/RenterProfile";
+import RentedHouse from "../Pages/RentedHouse/RentedHouse";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
       {
         path: "owner-profile",
         element: <OwnerProfile></OwnerProfile>,
+      },
+      {
+        path: "renter-profile",
+        element: <RenterProfile />,
+      },
+      {
+        path: "rented-house",
+        element: <RentedHouse />,
       },
     ],
   },

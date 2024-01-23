@@ -3,7 +3,10 @@ import { MdDashboard } from "react-icons/md";
 import { FaHouseChimneyWindow } from "react-icons/fa6";
 import { FaBuilding } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useUser from "../../Hooks/useUser";
 const DashSideBar = () => {
+  const [users] = useUser();
+  console.log(users);
   const links = (
     <>
       <NavLink
@@ -64,10 +67,10 @@ const DashSideBar = () => {
               alt="avatar"
             />
             <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
-              John Doe
+              {users?.name}
             </h4>
             <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-              john@example.com
+              {users.email}
             </p>
           </div>
 

@@ -1,10 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useUser from "../../Hooks/useUser";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const defaultPhoto =
     "https://i.ibb.co/Fhm4brM/Screenshot-2023-11-25-145934.jpg";
+  const [users] = useUser();
+
   const handleLogOut = () => {
     logout()
       .then((result) => {
@@ -100,11 +103,31 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <Link className="  mx-auto" to={"dashboard/owner-profile"}>
-                      <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
-                        Dashboard
-                      </button>
-                    </Link>
+                    {users.role === "House Owner" ? (
+                      <>
+                        {" "}
+                        <Link
+                          className="  mx-auto"
+                          to={"dashboard/owner-profile"}
+                        >
+                          <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
+                            Dashboard
+                          </button>
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        <Link
+                          className="  mx-auto"
+                          to={"dashboard/renter-profile"}
+                        >
+                          <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
+                            Dashboard
+                          </button>
+                        </Link>
+                      </>
+                    )}
                   </li>
                   <li>
                     <button
