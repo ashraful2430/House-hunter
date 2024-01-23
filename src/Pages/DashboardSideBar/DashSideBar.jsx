@@ -9,47 +9,95 @@ const DashSideBar = () => {
   console.log(users);
   const links = (
     <>
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? " bg-gray-200 text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100"
-        }
-        to={"/"}
-      >
-        <a className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
-          <FaHouseChimneyWindow className="text-2xl" />
-          <span className="mx-4 font-medium">Home</span>
-        </a>
-      </NavLink>
-      <NavLink
-        to={"owner-profile"}
-        className={({ isActive }) =>
-          isActive
-            ? " bg-gray-200 text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
-        }
-      >
-        <a className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
-          <MdDashboard className="text-2xl" />
+      {users.role === "House Owner" ? (
+        <>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? " bg-gray-200 text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100"
+            }
+            to={"/"}
+          >
+            <a className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
+              <FaHouseChimneyWindow className="text-2xl" />
+              <span className="mx-4 font-medium">Home</span>
+            </a>
+          </NavLink>
+          <NavLink
+            to={"owner-profile"}
+            className={({ isActive }) =>
+              isActive
+                ? " bg-gray-200 text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
+            }
+          >
+            <a className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
+              <MdDashboard className="text-2xl" />
 
-          <span className="mx-4 font-medium">Dashboard</span>
-        </a>
-      </NavLink>
-      <NavLink
-        to={"owner-house"}
-        className={({ isActive }) =>
-          isActive
-            ? " bg-gray-200 text-blue-500 font-bold"
-            : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
-        }
-      >
-        <a className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
-          <FaBuilding className="text-2xl" />
+              <span className="mx-4 font-medium">Dashboard</span>
+            </a>
+          </NavLink>
+          <NavLink
+            to={"owner-house"}
+            className={({ isActive }) =>
+              isActive
+                ? " bg-gray-200 text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
+            }
+          >
+            <a className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
+              <FaBuilding className="text-2xl" />
 
-          <span className="mx-4 font-medium">Owned Houses</span>
-        </a>
-      </NavLink>
+              <span className="mx-4 font-medium">Owned Houses</span>
+            </a>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? " bg-gray-200 text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100"
+            }
+            to={"/"}
+          >
+            <a className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
+              <FaHouseChimneyWindow className="text-2xl" />
+              <span className="mx-4 font-medium">Home</span>
+            </a>
+          </NavLink>
+          <NavLink
+            to={"renter-profile"}
+            className={({ isActive }) =>
+              isActive
+                ? " bg-gray-200 text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
+            }
+          >
+            <a className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
+              <MdDashboard className="text-2xl" />
+
+              <span className="mx-4 font-medium">Dashboard</span>
+            </a>
+          </NavLink>
+          <NavLink
+            to={"rented-house"}
+            className={({ isActive }) =>
+              isActive
+                ? " bg-gray-200 text-blue-500 font-bold"
+                : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
+            }
+          >
+            <a className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
+              <FaBuilding className="text-2xl" />
+
+              <span className="mx-4 font-medium">Rented Houses</span>
+            </a>
+          </NavLink>
+        </>
+      )}
     </>
   );
   return (
