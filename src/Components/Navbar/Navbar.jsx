@@ -100,9 +100,11 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
-                      Dashboard
-                    </button>
+                    <Link className="  mx-auto" to={"dashboard/owner-profile"}>
+                      <button className="btn btn-sm  btn-ghost transition hover:scale-110 hover:shadow-xl focus:outline-none">
+                        Dashboard
+                      </button>
+                    </Link>
                   </li>
                   <li>
                     <button

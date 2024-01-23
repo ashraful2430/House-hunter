@@ -1,7 +1,54 @@
 import MobileSidebar from "./MobileSidebar";
 import { MdDashboard } from "react-icons/md";
 import { FaHouseChimneyWindow } from "react-icons/fa6";
+import { FaBuilding } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 const DashSideBar = () => {
+  const links = (
+    <>
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? " bg-gray-200 text-blue-500 font-bold"
+            : "hover:text-blue-400 transition duration-300 delay-100"
+        }
+        to={"/"}
+      >
+        <a className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100">
+          <FaHouseChimneyWindow className="text-2xl" />
+          <span className="mx-4 font-medium">Home</span>
+        </a>
+      </NavLink>
+      <NavLink
+        to={"owner-profile"}
+        className={({ isActive }) =>
+          isActive
+            ? " bg-gray-200 text-blue-500 font-bold"
+            : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
+        }
+      >
+        <a className="flex items-center px-4 py-2 mt-5 hover:bg-gray-100 ">
+          <MdDashboard className="text-2xl" />
+
+          <span className="mx-4 font-medium">Dashboard</span>
+        </a>
+      </NavLink>
+      <NavLink
+        to={"owner-house"}
+        className={({ isActive }) =>
+          isActive
+            ? " bg-gray-200 text-blue-500 font-bold"
+            : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
+        }
+      >
+        <a className="flex items-center px-4 py-2 mt-5  hover:bg-gray-100">
+          <FaBuilding className="text-2xl" />
+
+          <span className="mx-4 font-medium">Owned Houses</span>
+        </a>
+      </NavLink>
+    </>
+  );
   return (
     <>
       <div className="hidden lg:block">
@@ -25,19 +72,7 @@ const DashSideBar = () => {
           </div>
 
           <div className="flex flex-col justify-between flex-1 mt-6">
-            <nav>
-              <a className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200">
-                <MdDashboard className="text-2xl" />
-
-                <span className="mx-4 font-medium">Dashboard</span>
-              </a>
-
-              <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
-                <FaHouseChimneyWindow className="text-2xl" />
-
-                <span className="mx-4 font-medium">Owned Houses</span>
-              </a>
-            </nav>
+            <nav>{links}</nav>
           </div>
         </aside>
       </div>

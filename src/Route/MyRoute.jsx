@@ -7,6 +7,7 @@ import Login from "../Components/Login/Login";
 import SignUp from "../Components/SignUp/SignUp";
 import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
 import OwnerHouse from "../Pages/OwnerHouse/OwnerHouse";
+import OwnerProfile from "../Pages/OwnerProfile/OwnerProfile";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "owner-house",
         element: <OwnerHouse />,
+      },
+      {
+        path: "owner-profile",
+        element: <OwnerProfile></OwnerProfile>,
       },
     ],
   },

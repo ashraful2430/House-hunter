@@ -1,7 +1,53 @@
 import { MdDashboard } from "react-icons/md";
 import { FaHouseChimneyWindow } from "react-icons/fa6";
+import { FaBuilding } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const MobileSidebar = () => {
+  const links = (
+    <>
+      {/* home */}
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? "  text-blue-500 font-bold"
+            : "hover:text-blue-400 transition duration-300 delay-100"
+        }
+        to={"/"}
+      >
+        <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+          <FaHouseChimneyWindow className="text-2xl" />
+        </a>
+      </NavLink>
+      {/* dashboard */}
+      <NavLink
+        to={"owner-profile"}
+        className={({ isActive }) =>
+          isActive
+            ? "  text-blue-500 font-bold"
+            : "hover:text-blue-400 transition duration-300 delay-100 bg-none"
+        }
+      >
+        <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+          <MdDashboard className="text-2xl" />
+        </a>
+      </NavLink>
+
+      {/* houses */}
+      <NavLink
+        to={"owner-house"}
+        className={({ isActive }) =>
+          isActive
+            ? "  text-blue-500 font-bold"
+            : "hover:text-blue-400 transition duration-300 delay-100 bg-none hover:bg-slate-200"
+        }
+      >
+        <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
+          <FaBuilding className="text-2xl" />
+        </a>
+      </NavLink>
+    </>
+  );
   return (
     <>
       <div className="block lg:hidden">
@@ -14,13 +60,7 @@ const MobileSidebar = () => {
                 alt=""
               />
             </a>
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
-              <MdDashboard className="text-2xl" />
-            </a>
-
-            <a className="p-1.5 text-gray-700 focus:outline-nones transition-colors duration-200 rounded-lg dark:text-gray-200 dark:hover:bg-gray-800 hover:bg-gray-100">
-              <FaHouseChimneyWindow className="text-2xl" />
-            </a>
+            {links}
           </nav>
         </aside>
       </div>
