@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import useBookedCount from "../../Hooks/useBookedCount";
 
 const BookHouseModal = ({ house, index }) => {
   const navigate = useNavigate();
-
   const {
     houseName,
     address,
@@ -24,6 +24,8 @@ const BookHouseModal = ({ house, index }) => {
     details,
   } = house;
   const [users, isLoading] = useUser();
+  const [count, refetch] = useBookedCount();
+
   const axiosPublic = useAxiosPublic();
 
   const {
@@ -34,7 +36,6 @@ const BookHouseModal = ({ house, index }) => {
   } = useForm();
 
   useEffect(() => {
-    // Set initial values using setValue
     setValue("name", users.name);
     setValue("email", users.email);
     setValue("number", users.number);
@@ -49,6 +50,17 @@ const BookHouseModal = ({ house, index }) => {
   }
 
   const onSubmit = (data) => {
+    if (count.count >= 2) {
+      document.getElementById(`${index}`).close();
+      swal(
+        "Limit Exceeded",
+        "You have reached the maximum booking limit",
+        "error"
+      );
+      refetch();
+      console.log(count);
+      return;
+    }
     const bookingInfo = {
       houseName,
       address,
@@ -66,7 +78,7 @@ const BookHouseModal = ({ house, index }) => {
       bookedEmail: data.email,
       bookedNumber: data.number,
     };
-    console.log(bookingInfo);
+
     axiosPublic.post("/booked", bookingInfo).then((res) => {
       if (res.data.insertedId) {
         swal("Thank You!", "You have booked successfully!", "success");
