@@ -13,14 +13,18 @@ const useIndividualRented = () => {
     }
   }, []);
 
-  const { data: rentedHouses = [], isLoading } = useQuery({
+  const {
+    data: rentedHouses = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["rented", userEmail],
     queryFn: async () => {
       const res = await axiosPublic.get(`/rented/${userEmail}`);
       return res.data;
     },
   });
-  return [rentedHouses, isLoading];
+  return [rentedHouses, isLoading, refetch];
 };
 
 export default useIndividualRented;

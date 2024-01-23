@@ -2,7 +2,7 @@ import useIndividualRented from "../../Hooks/useIndividualRented";
 import HouseTable from "./HouseTable";
 
 const OwnerHouse = () => {
-  const [rentedHouses, isLoading] = useIndividualRented();
+  const [rentedHouses, isLoading, refetch] = useIndividualRented();
   if (isLoading) {
     return <p>Loading....</p>;
   }
@@ -30,6 +30,7 @@ const OwnerHouse = () => {
                   key={house._id}
                   index={index}
                   house={house}
+                  refetch={refetch}
                 ></HouseTable>
               ))}
             </tbody>
