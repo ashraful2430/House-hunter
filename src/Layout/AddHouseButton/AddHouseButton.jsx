@@ -41,6 +41,7 @@ const AddHouseButton = () => {
         document.getElementById("my_modal_3").close();
         reset();
         navigate("/dashboard/owner-house");
+        window.location.reload();
       }
     });
   };
@@ -221,7 +222,9 @@ const AddHouseButton = () => {
                   })}
                 />
                 {errors.number && (
-                  <span className="text-red-500">Your number is required</span>
+                  <span className="text-red-500">
+                    Your number Must be from Bangladesh
+                  </span>
                 )}
                 <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                   Phone Number

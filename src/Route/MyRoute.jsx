@@ -20,7 +20,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/houseCount"),
+        loader: () =>
+          fetch("https://house-hunter-backend-pi.vercel.app/houseCount"),
       },
       {
         path: "/reviews",

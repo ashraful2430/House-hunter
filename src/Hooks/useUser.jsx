@@ -14,14 +14,18 @@ const useUser = () => {
     }
   }, []);
 
-  const { data: users = [], isLoading } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users", userEmail],
     queryFn: async () => {
       const res = await axiosPublic.get(`/users/${userEmail}`);
       return res.data;
     },
   });
-  return [users, isLoading];
+  return [users, isLoading, refetch];
 };
 
 export default useUser;
