@@ -24,6 +24,7 @@ const BookHouseModal = ({ house, index }) => {
     details,
   } = house;
   const [users, isLoading] = useUser();
+
   const [count, refetch] = useBookedCount();
 
   const axiosPublic = useAxiosPublic();
@@ -50,6 +51,11 @@ const BookHouseModal = ({ house, index }) => {
   }
 
   const onSubmit = (data) => {
+    if (users.role === "House Owner") {
+      swal("Sorry!", "House Owner can not book houses", "error");
+      document.getElementById(`${index}`).close();
+      return;
+    }
     if (count.count >= 2) {
       document.getElementById(`${index}`).close();
       swal(
