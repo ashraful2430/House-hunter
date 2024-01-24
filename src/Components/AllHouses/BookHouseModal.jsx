@@ -64,7 +64,7 @@ const BookHouseModal = ({ house, index }) => {
         "error"
       );
       refetch();
-      console.log(count);
+
       return;
     }
     const bookingInfo = {

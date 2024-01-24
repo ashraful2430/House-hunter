@@ -2,12 +2,11 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const Banner = ({ onSearch }) => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState();
 
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(searchText);
-    setSearchText("");
   };
   const handleInputChange = (e) => {
     setSearchText(e.target.value);

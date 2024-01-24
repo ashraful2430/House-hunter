@@ -8,6 +8,7 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const handleSearch = (searchText) => {
     setSearch(searchText);
+    console.log(searchText);
   };
   return (
     <>

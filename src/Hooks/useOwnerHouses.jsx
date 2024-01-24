@@ -19,7 +19,7 @@ const useOwnerHouses = () => {
     queryKey: ["ownedHouse", userEmail],
     queryFn: async () => {
       const res = await axiosPublic.get(`/rented/owner/${userEmail}`);
-      console.log(res.data);
+
       return res.data;
     },
   });

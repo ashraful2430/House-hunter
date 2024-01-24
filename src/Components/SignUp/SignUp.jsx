@@ -39,8 +39,6 @@ const SignUp = () => {
         swal("Sorry!", "You have already registered", "error");
       }
     } catch (error) {
-      console.error("Error during user registration:", error);
-
       // Show error message
       swal("Sorry!", "You have already registered", "error");
     }

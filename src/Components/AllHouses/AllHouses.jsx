@@ -37,17 +37,17 @@ const AllHouses = ({ totalCount, search }) => {
   };
   return (
     <>
+      <h3 className="text-center text-xl md:text-3xl my-5 font-medium">
+        All Houses For Rents
+      </h3>
       {allHouses.length === 0 ? (
         <>
-          <p className="text-center text-xl md:text-3xl font-medium min-h-screen flex items-center justify-center">
-            There is no house for rent yet
+          <p className="text-center flex justify-center items-center text-2xl font-semibold">
+            No House to show
           </p>
         </>
       ) : (
         <>
-          <h3 className="text-center text-xl md:text-3xl my-5 font-medium">
-            All Houses For Rents
-          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4 mx-2">
             {allHouses.map((house, index) => (
               <AllHousesCard
@@ -57,44 +57,45 @@ const AllHouses = ({ totalCount, search }) => {
               ></AllHousesCard>
             ))}
           </div>
-          <div className="text-center mt-20 ">
-            <button
-              onClick={handlePrevPage}
-              className="btn btn-square bg-blue-500 text-white"
-            >
-              Prev
-            </button>
-            {pages.map((page, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(page)}
-                className={`btn btn-square ml-2 text-white ${
-                  currentPage === page ? "bg-purple-500" : "bg-blue-500"
-                }`}
-              >
-                {page}
-              </button>
-            ))}
-            <button
-              onClick={handleNextPage}
-              className="btn btn-square ml-2 bg-blue-500 text-white"
-            >
-              Next
-            </button>
-            <select
-              className="ml-4 border-2 py-3 px-1 rounded-lg"
-              defaultValue={itemPerPage}
-              onChange={handleItemPerPage}
-              name=""
-              id=""
-            >
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-            </select>
-          </div>
         </>
       )}
+
+      <div className="text-center mt-20 ">
+        <button
+          onClick={handlePrevPage}
+          className="btn btn-square bg-blue-500 text-white"
+        >
+          Prev
+        </button>
+        {pages.map((page, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(page)}
+            className={`btn btn-square ml-2 text-white ${
+              currentPage === page ? "bg-purple-500" : "bg-blue-500"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+        <button
+          onClick={handleNextPage}
+          className="btn btn-square ml-2 bg-blue-500 text-white"
+        >
+          Next
+        </button>
+        <select
+          className="ml-4 border-2 py-3 px-1 rounded-lg"
+          defaultValue={itemPerPage}
+          onChange={handleItemPerPage}
+          name=""
+          id=""
+        >
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+      </div>
     </>
   );
 };

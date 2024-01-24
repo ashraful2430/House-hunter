@@ -5,7 +5,6 @@ import useOwnerHouses from "../../Hooks/useOwnerHouses";
 
 const OwnerProfile = () => {
   const [ownedHouse, isLoading] = useOwnerHouses();
-  console.log(ownedHouse);
 
   if (isLoading) {
     return (
