@@ -10,7 +10,7 @@ const AddHouseButton = () => {
   const axiosPublic = useAxiosPublic();
   const [users] = useUser();
   const ownerName = users.name;
-  const ownerEmail = users.email;
+  const email = users.email;
   const {
     register,
     handleSubmit,
@@ -31,7 +31,7 @@ const AddHouseButton = () => {
       number: data.number,
       rent: data.rent,
       size: data.size,
-      ownerEmail,
+      email,
       ownerName,
     };
 

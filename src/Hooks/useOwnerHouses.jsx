@@ -1,30 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "./useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
-const useIndividualRented = () => {
+const useOwnerHouses = () => {
   const [userEmail, setUserEmail] = useState("");
   const axiosPublic = useAxiosPublic();
-
   useEffect(() => {
     const localUserInfo = JSON.parse(localStorage.getItem("user"));
     if (localUserInfo) {
       setUserEmail(localUserInfo.email);
     }
   }, []);
-
   const {
-    data: rentedHouses = [],
+    data: ownedHouse = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["rent", userEmail],
+    queryKey: ["ownedHouse", userEmail],
     queryFn: async () => {
       const res = await axiosPublic.get(`/rented/owner/${userEmail}`);
+      console.log(res.data);
       return res.data;
     },
   });
-  return [rentedHouses, isLoading, refetch];
+  return [ownedHouse, isLoading, refetch];
 };
 
-export default useIndividualRented;
+export default useOwnerHouses;

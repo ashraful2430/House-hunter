@@ -2,14 +2,14 @@ import { useState } from "react";
 import useAllHouses from "../../Hooks/useAllHouses";
 import AllHousesCard from "./AllHousesCard";
 import PropTypes from "prop-types";
-const AllHouses = ({ totalCount }) => {
+const AllHouses = ({ totalCount, search }) => {
   const [itemPerPage, setItemPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const count = totalCount.count;
   const numberOfPages = Math.ceil(count / itemPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
-  const [allHouses, isLoading] = useAllHouses(currentPage, itemPerPage);
+  const [allHouses, isLoading] = useAllHouses(currentPage, itemPerPage, search);
 
   if (isLoading) {
     return (
@@ -101,6 +101,7 @@ const AllHouses = ({ totalCount }) => {
 
 AllHouses.propTypes = {
   totalCount: PropTypes.object,
+  search: PropTypes.string,
 };
 
 export default AllHouses;

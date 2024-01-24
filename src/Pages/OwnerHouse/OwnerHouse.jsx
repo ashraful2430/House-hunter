@@ -1,8 +1,8 @@
-import useIndividualRented from "../../Hooks/useIndividualRented";
+import useOwnerHouses from "../../Hooks/useOwnerHouses";
 import HouseTable from "./HouseTable";
 
 const OwnerHouse = () => {
-  const [rentedHouses, isLoading, refetch] = useIndividualRented();
+  const [ownedHouse, isLoading, refetch] = useOwnerHouses();
   if (isLoading) {
     return (
       <p className="flex justify-center items-center min-h-screen text-xl md:text-3xl font-medium">
@@ -12,7 +12,7 @@ const OwnerHouse = () => {
   }
   return (
     <>
-      {rentedHouses.length === 0 ? (
+      {ownedHouse.length === 0 ? (
         <>
           <p className="text-center text-xl md:text-3xl font-medium min-h-screen flex items-center justify-center">
             You did not add any house for rent yet
@@ -37,7 +37,7 @@ const OwnerHouse = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {rentedHouses.map((house, index) => (
+                  {ownedHouse.map((house, index) => (
                     <HouseTable
                       key={house._id}
                       index={index}

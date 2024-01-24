@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import useIndividualRented from "../../Hooks/useIndividualRented";
+
 import ShowHouses from "./ShowHouses";
+import useOwnerHouses from "../../Hooks/useOwnerHouses";
 
 const OwnerProfile = () => {
-  const [rentedHouses, isLoading] = useIndividualRented();
+  const [ownedHouse, isLoading] = useOwnerHouses();
+  console.log(ownedHouse);
 
   if (isLoading) {
     return (
@@ -14,7 +16,7 @@ const OwnerProfile = () => {
   }
   return (
     <div>
-      {rentedHouses.length === 0 ? (
+      {ownedHouse.length === 0 ? (
         <>
           <p className="text-center text-xl md:text-3xl font-medium min-h-screen flex items-center justify-center">
             You did not add any house for rent yet
@@ -26,7 +28,7 @@ const OwnerProfile = () => {
             Houses you gave on rent
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4 mx-2">
-            {rentedHouses.map((house) => (
+            {ownedHouse.map((house) => (
               <ShowHouses key={house._id} house={house}></ShowHouses>
             ))}
           </div>

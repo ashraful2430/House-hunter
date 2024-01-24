@@ -1,4 +1,18 @@
-const Banner = () => {
+import { useState } from "react";
+import PropTypes from "prop-types";
+
+const Banner = ({ onSearch }) => {
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch(searchText);
+    setSearchText("");
+  };
+  const handleInputChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
   return (
     <>
       <div className="max-w-[1200px] mx-auto">
@@ -22,15 +36,15 @@ const Banner = () => {
                 convenience. Welcome to a new chapter, where every door opens to
                 the warmth of home.
               </p>
-              <form>
+              <form onSubmit={handleSearch}>
                 <div className="flex w-full justify-center items-end">
                   <div className="relative mr-2 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
                     <label className="leading-7 text-sm text-white">
-                      Search your home
+                      Search your home by city
                     </label>
                     <input
                       type="text"
-                      name="search"
+                      onChange={handleInputChange}
                       className="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
@@ -48,6 +62,9 @@ const Banner = () => {
       </div>
     </>
   );
+};
+Banner.propTypes = {
+  onSearch: PropTypes.func,
 };
 
 export default Banner;
